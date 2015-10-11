@@ -26,7 +26,7 @@ class HomePageContainer extends React.Component {
       <div>
         <h2>Home Page2</h2>
         <p>{cwd}</p>
-        <button onClick={() => refresh_cwd("/home/creek")}>Refresh CWD</button>
+        <button onClick={refresh_cwd}>Refresh CWD</button>
         <Link to="about">to About</Link>
       </div>
     );

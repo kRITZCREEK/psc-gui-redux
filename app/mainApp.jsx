@@ -4,8 +4,6 @@ import router from './routes/router';
 import debug from './utils/debug';
 import './app.css';
 
-import {main} from '../src/Main.purs';
-
 var dd = debug('mainApp');
 
 window.location.hash = '/';
