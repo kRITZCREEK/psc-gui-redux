@@ -9,6 +9,10 @@ var webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
 var projectRoot = path.join(__dirname, '..');
 var appRoot = path.join(projectRoot, 'app');
 
+var srcs = ['src[]=bower_components/purescript-*/src/**/*.purs', 'src[]=src/**/*.purs'];
+
+var ffis = ['ffi[]=bower_components/purescript-*/src/**/*.js'];
+
 module.exports = function(opts) {
   var entry = {
     main: opts.prerender ? path.join(appRoot, 'mainApp') : path.join(appRoot, 'mainApp')
@@ -28,7 +32,8 @@ module.exports = function(opts) {
     'ttf|eot': 'file-loader',
     'wav|mp3': 'file-loader',
     'html': 'html-loader',
-    'md|markdown': [ 'html-loader', 'markdown-loader' ]
+    'md|markdown': [ 'html-loader', 'markdown-loader' ],
+    'purs': 'purs-loader?output=output&' + srcs.concat(ffis).join('&')
   };
 
   var cssLoader = opts.minimize ? 'css-loader' : 'css-loader?localIdentName=[path][name]---[local]---[hash:base64:5]';
@@ -56,9 +61,18 @@ module.exports = function(opts) {
 
   ];
 
-  var modulesDirectories = [ 'node_modules' ];
+  // var modulesDirectories = [ 'node_modules' ];
+  var modulesDirectories = [
+    'node_modules',
+    // The bower component for purescript-prelude is specified here to
+    // allow JavaScript files to require the 'Prelude' module globally.
+    // 'bower_components/purescript-prelude/src',
+    // The output directory is specified here to allow PureScript files in
+    // your source to import other PureScript modules in your source.
+    'output'
+  ];
 
-  var extensions = [ '', '.js', '.jsx', '.json', '.node' ];
+  var extensions = [ '', '.js', '.jsx', '.json', '.node', '.purs' ];
 
   var publicPath = opts.devServer
                  ? 'http://localhost:2992/dist/'

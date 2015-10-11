@@ -31,3 +31,8 @@ node_modules
 
 # App packaged
 release
+/bower_components/
+/node_modules/
+/output/
+/.psci*
+/src/.webpack.js
