@@ -4,9 +4,7 @@ import { Link } from 'react-router';
 
 export default class AboutPageContainer extends React.Component {
 
-  static defaultProps = {
-
-  }
+  static defaultProps = {}
 
   render() {
     return (
@@ -17,5 +15,4 @@ export default class AboutPageContainer extends React.Component {
       </div>
     );
   }
-
 }

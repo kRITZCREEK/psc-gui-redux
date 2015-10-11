@@ -1,9 +1,1 @@
-import keyMirror from 'keymirror';
-
-
-export default keyMirror({
-
-  // Routes
-  ROUTE_CHANGE: null
-
-});
+export const REFRESH_CWD = 'REFRESH_CWD';
